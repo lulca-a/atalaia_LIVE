@@ -1,0 +1,24 @@
+
+#fallback se a consulta falhar
+##pela lógica atual, necessário colocar no dicionário de frames
+
+#criar json
+#script para enviar o json par ao repositório do pages
+
+#fazer o cron
+
+
+
+
+
+#consulta 24 passadas pelo WEB com busca binparia por mundança de estado
+#verifica horários indisponíveis
+#salva em ano_mes.json
+
+#envia email informando a consutla (dev)
+
+
+
+
+############################## v2.0 #####################################
+#Desenvolver a classe apra receber self.radares, self.datas,etc
