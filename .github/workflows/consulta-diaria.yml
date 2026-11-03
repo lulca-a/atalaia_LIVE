@@ -2,7 +2,7 @@ name: Atualizar disponibilidades dos radares
 
 on:
   schedule:
-    - cron: "0 4 * * *"
+    - cron: "17 4 * * *"
   workflow_dispatch:
 
 permissions:
