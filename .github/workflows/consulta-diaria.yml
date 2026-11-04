@@ -26,16 +26,29 @@ jobs:
       - name: Consultar radares e atualizar os JSONs
         env:
           API_KEY_1: ${{ secrets.API_KEY_1 }}
-        run: python consulta/main.py
-
-      - name: Salvar os JSONs atualizados no repositório
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add banco/*.json
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Evento: $GITHUB_EVENT_NAME"
+          python consulta/main.py
+
+      - name: Diagnosticar e salvar JSONs
+        run: |
+          echo "Arquivos JSON:"
+          find banco -type f -name "*.json"
+
+          echo "Estado do Git:"
+          git status --short
+
+          git add -A banco/
+
+          echo "Alterações preparadas:"
+          git diff --cached --stat
+
           if git diff --cached --quiet; then
             echo "Nenhuma alteração nos JSONs."
           else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "Atualizar disponibilidades dos radares"
             git push
           fi
